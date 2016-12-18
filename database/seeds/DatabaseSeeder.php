@@ -9,7 +9,9 @@ class DatabaseSeeder extends Seeder {
 
 	public function run()
 	{
-		//Model::unguard();
+		
+		$this->call('FabricanteSeeder');
+		$this->call('VehiculoSeeder');
 
 		User::truncate();
 		$this->call('UserSeeder');
