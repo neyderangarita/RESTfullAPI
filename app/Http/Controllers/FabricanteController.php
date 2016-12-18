@@ -8,39 +8,36 @@ use App\Fabricante;
 class FabricanteController extends Controller {
 
 
+	
 	public function __construct()
 	{
 		$this->middleware('oauth', ['only' => ['store', 'update', 'destroy']]);
 	}
+	
 
 	public function index()
-	{
+	{	
+		
 		$fabricantes = Cache::remember('fabricantes', 15/60, function()
 			{
 				return Fabricante::simplePaginate(15);
 			});
-		return response()->json(['siguiente' => $fabricantes->nextPageUrl(), 'anterior' => $fabricantes->previousPageUrl(), 'datos' => $fabricantes->items()],200);
-	}
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+		return response()->json(['siguiente' => $fabricantes->nextPageUrl(), 'anterior' => $fabricantes->previousPageUrl(), 'datos' => $fabricantes->items()],200);			
+	}	
+
+	// METODO POST
 	public function store(Request $request)
 	{
+		
 		if(!$request->input('nombre') || ! $request->input('telefono'))
 		{
 			return response()->json(['mensaje' => 'No se pudieron procesar los valores', 'codigo' => 422],422);
 		}
 		Fabricante::create($request->all());
 		return response()->json(['mensaje' => 'Fabricante insertado'],201);
-	}
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+		
+	}	
+
 	public function show($id)
 	{
 		$fabricante = Fabricante::find($id);
@@ -48,14 +45,9 @@ class FabricanteController extends Controller {
 		{
 			return response()->json(['mensaje' => 'No se encuentra este fabricante', 'codigo' => 404],404);
 		}
-		return response()->json(['datos' => $fabricante],200);
+		return response()->json(['datos' => $fabricante],200);	
 	}
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+
 	public function update(Request $request, $id)
 	{
 		$metodo = $request->method();
@@ -97,12 +89,7 @@ class FabricanteController extends Controller {
 		$fabricante->save();
 		return response()->json(['mensaje' => 'Fabricante editado'],200);
 	}
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+
 	public function destroy($id)
 	{
 		$fabricante = Fabricante::find($id);
@@ -118,4 +105,5 @@ class FabricanteController extends Controller {
 		$fabricante->delete();
 		return response()->json(['mensaje' => 'Fabricante eliminado'],200);
 	}
+
 }
