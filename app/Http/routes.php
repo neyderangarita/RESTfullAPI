@@ -13,6 +13,7 @@
 
 Route::group(array('prefix' => 'api/colegio'), function()
 {
+	Route::resource('mail', 'MailController', ['only' => ['show']]);
 	Route::resource('user', 'UserController', ['only' => ['store', 'update', 'destroy', 'show']]);
 	Route::resource('vehiculos', 'VehiculoController', ['only' => ['index', 'show']]);
 	Route::resource('fabricantes','FabricanteController', ['except' => ['edit', 'create']]);

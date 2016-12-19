@@ -33,7 +33,7 @@ class UserController extends Controller
         $usuario = User::find($id);
         if(!$usuario)
         {
-            return response()->json(['mensaje' => 'No se encuentra este fabricante', 'codigo' => 404],404);
+            return response()->json(['mensaje' => 'No se encuentra este usuario', 'codigo' => 404],404);
         }
         return response()->json(['datos' => $usuario],200);
     }

@@ -15,7 +15,8 @@ return [
 	|
 	*/
 
-	'driver' => 'smtp',
+	//'driver' => 'smtp',
+	'driver' => env('MAIL_DRIVER', 'smtp'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -28,7 +29,8 @@ return [
 	|
 	*/
 
-	'host' => 'smtp.mailgun.org',
+	//'host' => 'smtp.gmail.com',
+	'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -41,8 +43,8 @@ return [
 	|
 	*/
 
-	'port' => 587,
-
+	//'port' => 465,
+	'port' => env('MAIL_PORT', 587),
 	/*
 	|--------------------------------------------------------------------------
 	| Global "From" Address
@@ -54,7 +56,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => null, 'name' => null],
+	'from' => ['address' => 'cupocolegio2017@gmail.com', 'name' => 'Administrador cupo colegio'],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -67,8 +69,8 @@ return [
 	|
 	*/
 
-	'encryption' => 'tls',
-
+	//'encryption' => 'ssl',
+	'encryption' => env('MAIL_ENCRYPTION', 'tls'),
 	/*
 	|--------------------------------------------------------------------------
 	| SMTP Server Username
@@ -80,7 +82,8 @@ return [
 	|
 	*/
 
-	'username' => null,
+	//'username' => null,
+	'username' => env('MAIL_USERNAME'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,8 +96,8 @@ return [
 	|
 	*/
 
-	'password' => null,
-
+	//'password' => null,
+	'password' => env('MAIL_PASSWORD'),
 	/*
 	|--------------------------------------------------------------------------
 	| Sendmail System Path
