@@ -30,7 +30,7 @@ return [
 	*/
 
 	//'host' => 'smtp.gmail.com',
-	'host' => env('MAIL_HOST', 'smtp.googlemail.com'),
+	'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -44,7 +44,7 @@ return [
 	*/
 
 	//'port' => 465,
-	'port' => env('MAIL_PORT', 465),
+	'port' => env('MAIL_PORT', 587),
 	/*
 	|--------------------------------------------------------------------------
 	| Global "From" Address
@@ -70,7 +70,7 @@ return [
 	*/
 
 	//'encryption' => 'ssl',
-	'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+	'encryption' => env('MAIL_ENCRYPTION', 'tls'),
 	/*
 	|--------------------------------------------------------------------------
 	| SMTP Server Username
