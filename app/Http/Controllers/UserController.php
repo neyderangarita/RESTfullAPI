@@ -15,16 +15,26 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        if(!$request->input('email') || ! $request->input('password'))
+        if(!$request->input('email') || ! $request->input('nombre') )
         {
             return response()->json(['mensaje' => 'No se pudieron procesar los valores', 'codigo' => 422],422);
         }
-        User::create
-        ([
-            'email' => $request->input('email'),
-            'password' => \Hash::make($request->input('password')),
-        ]);
 
+        if (!$request->input('password'))
+        {
+            User::create
+            ([
+                'email' => $request->input('email'),
+                'nombre' => $request->input('nombre'),
+            ]);
+        }else{
+            User::create
+            ([
+                'email' => $request->input('email'),
+                'password' => \Hash::make($request->input('password')),
+                'nombre' => $request->input('nombre'),
+            ]);   
+        }
         return response()->json(['mensaje' => 'Registro de usuario exitoso'],201);
     }
 
@@ -38,10 +48,22 @@ class UserController extends Controller
         return response()->json(['datos' => $usuario],200);
     }
 
+    public function usuario($email)
+    {      
+        $user = User::where('email', '=' , $email)->first();
+        $nombre = $user->nombre; 
+        if(!$nombre)
+        {
+            return response()->json(['mensaje' => 'No se encuentra este usuario', 'codigo' => 404],404);
+        }
+        return response()->json(['datos' => $nombre],200);   
+    }
+
     public function update(Request $request, $id)
     {
         $metodo = $request->method();
         $user = User::find($id);
+
         if(!$user)
         {
             return response()->json(['mensaje' => 'No se encuentra este usuario', 'codigo' => 404],404);
@@ -93,4 +115,5 @@ class UserController extends Controller
         $Usuario->delete();
         return response()->json(['mensaje' => 'Usuario eliminado'],200);
     }
+
 }
