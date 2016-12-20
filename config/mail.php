@@ -44,7 +44,7 @@ return [
 	*/
 
 	//'port' => 465,
-	'port' => env('MAIL_PORT', 587),
+	'port' => env('MAIL_PORT', 465),
 	/*
 	|--------------------------------------------------------------------------
 	| Global "From" Address
@@ -70,7 +70,7 @@ return [
 	*/
 
 	//'encryption' => 'ssl',
-	'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+	'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
 	/*
 	|--------------------------------------------------------------------------
 	| SMTP Server Username

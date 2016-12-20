@@ -15,6 +15,8 @@ class MailController extends Controller
         {
             return response()->json(['mensaje' => 'No se pudieron procesar los valores', 'codigo' => 422],422);
         }
+
+        
         $aleatoria = \Hash::make(str_random(4));
 
         $user = User::where('email', '=' , $request->input('email'))->first();
