@@ -16,7 +16,7 @@ return [
 	*/
 
 	//'driver' => 'smtp',
-	'driver' => 'mail', 
+	'driver' => env('MAIL_DRIVER', 'smtp'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -30,8 +30,7 @@ return [
 	*/
 
 	//'host' => 'smtp.gmail.com',
-	//'host' => env('MAIL_HOST', 'smtp.gmail.com'),
-	'host' => '',
+	'host' => env('MAIL_HOST', 'smtp.googlemail.com'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -45,9 +44,7 @@ return [
 	*/
 
 	//'port' => 465,
-	//'port' => env('MAIL_PORT', 465),
-	'port' => '', 
-
+	'port' => env('MAIL_PORT', 465),
 	/*
 	|--------------------------------------------------------------------------
 	| Global "From" Address
@@ -73,9 +70,7 @@ return [
 	*/
 
 	//'encryption' => 'ssl',
-	//'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
-	'encryption' => '', 
-
+	'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
 	/*
 	|--------------------------------------------------------------------------
 	| SMTP Server Username
@@ -88,8 +83,7 @@ return [
 	*/
 
 	//'username' => null,
-	//'username' => env('MAIL_USERNAME'),
-	'username' => null,
+	'username' => env('MAIL_USERNAME'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -103,9 +97,7 @@ return [
 	*/
 
 	//'password' => null,
-	//'password' => env('MAIL_PASSWORD'),
-	'password' => null,
-	
+	'password' => env('MAIL_PASSWORD'),
 	/*
 	|--------------------------------------------------------------------------
 	| Sendmail System Path
