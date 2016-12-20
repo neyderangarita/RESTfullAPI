@@ -9,21 +9,28 @@ use Mail;
 class MailController extends Controller
 {
 
-    public function show($mail)
-    {
+    public function store(Request $request)
+    {         
+        if(!$request->input('email'))
+        {
+            return response()->json(['mensaje' => 'No se pudieron procesar los valores', 'codigo' => 422],422);
+        }
         $aleatoria = \Hash::make(str_random(4));
+
+        $user = User::where('email', '=' , $request->input('email'))->first();
+        $email = $request->input('email');
+        $password = bcrypt($aleatoria);       
+        $user->email = $email;
+        $user->password = $password;
+        $user->save();
+        // ENVIAR CORREO 
         $data=['hashed_random_password'=> $aleatoria];
 
-        Mail::send(['text'=>'mail'], $data, function($message) use ($mail){
-            $message->to($mail,'Usuario cupo colegio')->subject('Restauración de contraseña');
+        Mail::send(['text'=>'mail'], $data, function($message) use ($email){
+            $message->to($email,'Usuario cupo colegio')->subject('Restauración de contraseña');
             $message->from('cupocolegio2017@gmail.com','Administrador cupo colegio');
         });
 
-        if(!$mail)
-        {
-            return response()->json(['mensaje' => 'No se encuentra este fabricante', 'codigo' => 404],404);
-        }
-
-        return response()->json(['datos' => 'Email ha sido enviado'],200);
+        return response()->json(['mensaje' => 'Datos del usuario editados correctamente'],200);
     }
 }
