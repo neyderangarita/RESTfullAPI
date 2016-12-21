@@ -13,9 +13,26 @@ class ColegioController extends Controller
     
     public function __construct()
     {
-        $this->middleware('oauth', ['only' => ['store']]);
+        $this->middleware('oauth', ['only' => ['store', 'show']]);
     }
-    
+
+    public function show($id)
+    {
+
+        $result = Comentario::join('colegio', 'comentario.colegio_id', '=', 'colegio.id')
+                ->join('users', 'users.id', '=', 'comentario.user_id')
+                ->select('colegio.nombre as nombre_colegio', 'colegio.latitud', 'colegio.longitud', 'comentario.calificacion', 'comentario.mensaje', 'users.nombre as nombre_usuario')
+                ->getQuery()
+                ->get();
+
+        if(!$result)
+        {
+            return response()->json(['mensaje' => 'No se encuentra comentarios', 'codigo' => 404],404);
+        }
+
+         return response()->json(['datos' => $result ],200);
+
+    }
 
     public function store(Request $request)
     {
@@ -44,5 +61,8 @@ class ColegioController extends Controller
             
             return response()->json(['mensaje' => 'Registro de comentario exitoso'],201);
     }
+
+
+
 
 }

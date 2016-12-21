@@ -22,5 +22,6 @@ class ActualizarLlavesComentario extends Migration
 
     public function down()
     {
+        
     }
 }

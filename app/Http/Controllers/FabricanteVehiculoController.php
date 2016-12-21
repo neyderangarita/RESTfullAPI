@@ -22,7 +22,6 @@ class FabricanteVehiculoController extends Controller {
 		return response()->json(['datos' => $fabricante->vehiculos],200);
 	}
 
-
 	public function store(Request $request, $id)
 	{
 		//fabricante_id
