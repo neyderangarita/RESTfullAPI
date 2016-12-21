@@ -35,14 +35,12 @@ class ColegioController extends Controller
 
             Comentario::create
             ([
-                'colegio_id' => $request->input('colegio_id'),
-                'usuario_id' => $request->input('nombre'),
-                'calificacion' => $request->input('latiud'),
-                'mensaje' => $request->input('longitud'),
+                'colegio_id' => $colegio->id,
+                'usuario_id' => $idUsuario,
+                'calificacion' => $request->input('calificacion'),
+                'mensaje' => $request->input('comentario'),
             ]);
-
-
-
+            return response()->json(['mensaje' => 'Registro de comentario exitoso'],201);
     }
 
     public function show($id)

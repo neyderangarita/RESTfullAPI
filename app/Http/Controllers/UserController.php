@@ -51,13 +51,12 @@ class UserController extends Controller
     public function usuario($email)
     {      
         $user = User::where('email', '=' , $email)->first();
-        $nombre = $user->nombre; 
-        $nombre = $user->id; 
-        if(!$nombre)
+
+        if(!$user )
         {
             return response()->json(['mensaje' => 'No se encuentra este usuario', 'codigo' => 404],404);
         }
-        return response()->json(['datos' => $nombre],200);   
+        return response()->json(['datos' => $user],200);   
     }
 
     public function update(Request $request, $id)
