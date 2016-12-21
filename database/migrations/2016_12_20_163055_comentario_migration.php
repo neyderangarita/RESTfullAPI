@@ -11,7 +11,7 @@ class ComentarioMigration extends Migration
         Schema::create('comentario', function (Blueprint $table) {
             $table->increments('id');        
             $table->integer('colegio_id')->unsigned();
-            $table->integer('usuario_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->integer('calificacion');
             $table->string('mensaje');
             $table->nullableTimestamps();

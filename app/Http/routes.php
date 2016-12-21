@@ -4,9 +4,11 @@ Route::group(array('prefix' => 'api/colegio'), function()
 {
 	Route::resource('mail', 'MailController', ['only' => ['store']]);
 	Route::resource('user', 'UserController', ['only' => ['store', 'update', 'destroy', 'show']]);
-	Route::resource('vehiculos', 'VehiculoController', ['only' => ['index', 'show']]);
-	Route::resource('fabricantes','FabricanteController', ['except' => ['edit', 'create']]);
-	Route::resource('fabricantes.vehiculos','FabricanteVehiculoController', ['except' => ['show', 'edit', 'create']]);
+	Route::resource('colegio', 'ColegioController', ['only' => ['store']]);
+
+	//Route::resource('vehiculos', 'VehiculoController', ['only' => ['index', 'show']]);
+	//Route::resource('fabricantes','FabricanteController', ['except' => ['edit', 'create']]);
+	//Route::resource('fabricantes.vehiculos','FabricanteVehiculoController', ['except' => ['show', 'edit', 'create']]);
 });	
 
 Route::get('user/{email}', 'UserController@usuario');
