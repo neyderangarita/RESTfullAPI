@@ -24,8 +24,9 @@ class ColegioController extends Controller
         $result = Comentario::join('colegio', 'comentario.colegio_id', '=', 'colegio.id')
                 ->join('users', 'users.id', '=', 'comentario.user_id')
                 ->select('colegio.nombre as nombre_colegio', 'colegio.latitud', 'colegio.longitud', 'comentario.calificacion', 'comentario.mensaje', 'users.nombre as nombre_usuario')
-                ->getQuery()
+                ->where('colegio.codigo','=', $id)
                 ->get();
+        //->getQuery()
 
         if(!$result)
         {
