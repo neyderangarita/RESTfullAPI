@@ -52,6 +52,7 @@ class UserController extends Controller
     {      
         $user = User::where('email', '=' , $email)->first();
         $nombre = $user->nombre; 
+        $nombre = $user->id; 
         if(!$nombre)
         {
             return response()->json(['mensaje' => 'No se encuentra este usuario', 'codigo' => 404],404);
