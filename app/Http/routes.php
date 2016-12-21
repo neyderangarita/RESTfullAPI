@@ -2,7 +2,7 @@
 
 Route::group(array('prefix' => 'api/colegio'), function()
 {
-	Route::resource('mail', 'MailController', ['only' => ['store']]);
+	Route::resource('mail', 'MailController', ['only' => ['store', 'show']]);
 	Route::resource('user', 'UserController', ['only' => ['store', 'update', 'destroy', 'show']]);
 	Route::resource('colegio', 'ColegioController', ['only' => ['store', 'show']]);
 	//Route::resource('vehiculos', 'VehiculoController', ['only' => ['index', 'show']]);

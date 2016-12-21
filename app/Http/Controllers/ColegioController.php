@@ -11,10 +11,12 @@ use App\Comentario;
 class ColegioController extends Controller
 {
     
+    /*
     public function __construct()
     {
         $this->middleware('oauth', ['only' => ['store', 'show']]);
     }
+    */
 
     public function show($id)
     {

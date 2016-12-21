@@ -35,4 +35,14 @@ class MailController extends Controller
 
         return response()->json(['mensaje' => 'Datos del usuario editados correctamente'],200);
     }
+
+
+    public function show($id)
+    {
+
+    echo "string".$id;
+
+    }
+
+
 }
