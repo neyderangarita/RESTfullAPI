@@ -77,12 +77,10 @@ class ColegioController extends Controller
                 ->where('colegio.codigo','=', $codigo)
                 ->where('users.id','=', $id_usuario)
                 ->get();
-
-        echo count($result);
         
         if(count($result)==0)
         {
-            return response()->json(['mensaje' => 'No se encuentran comentarios', 'codigo' => 404],404);
+            return response()->json(['mensaje' => 'No se encuentran comentarios', 'codigo' => 200],200);
         }
 
         return response()->json(['datos' => $result, 'codigo' => 200],200);
