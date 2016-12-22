@@ -21,7 +21,6 @@ class ColegioController extends Controller
     public function show($id)
     {
 
-        /*
         $result = Comentario::join('colegio', 'comentario.colegio_id', '=', 'colegio.id')
                 ->join('users', 'users.id', '=', 'comentario.user_id')
                 ->select('colegio.nombre as nombre_colegio','comentario.calificacion'.' as calificacion', 'colegio.latitud', 'colegio.longitud', 'comentario.mensaje', 'users.nombre as nombre_usuario')
@@ -29,24 +28,12 @@ class ColegioController extends Controller
                 ->getQuery()
                 ->get();
                 
-        */        
-
-        $result = DB::select('select colegio.nombre as nombre_colegio, comentario.calificacion, colegio.latitud, colegio.longitud,comentario.mensaje, users.nombre as nombre_usuario from comentario inner join colegio on colegio.id = comentario.colegio_id  inner join users on users.id = comentario.user_id  where colegio.codigo= ?', [$id]);
+            
+        //$result = DB::select('select colegio.nombre as nombre_colegio, comentario.calificacion, colegio.latitud, colegio.longitud,comentario.mensaje, users.nombre as nombre_usuario from comentario inner join colegio on colegio.id = comentario.colegio_id  inner join users on users.id = comentario.user_id  where colegio.codigo= ?', [$id]);
         
-        //echo (int) $result[0]->calificacion;
-
-        //echo count($result);
-
         for ($i=0; $i < count($result); $i++) {    
             $result[$i]->calificacion =  (int) $result[$i]->calificacion;     
         }
-
-        /*
-        if(!$result)
-        {
-            return response()->json(['mensaje' => 'No se encuentra comentarios', 'codigo' => 404],404);
-        }
-        */
 
         return response()->json(['datos' => $result],200);
 
