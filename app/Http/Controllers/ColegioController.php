@@ -80,10 +80,10 @@ class ColegioController extends Controller
         
         if(count($result)==0)
         {
-            return response()->json(['mensaje' => 'No se encuentran comentarios', 'codigo' => 200],200);
+            return response()->json(['mensaje' => 'No se encuentran comentarios', 'codigo' => 200, 'estado' => true],200);
         }
 
-        return response()->json(['datos' => $result, 'codigo' => 200],200);
+        return response()->json(['datos' => $result, 'codigo' => 200, 'estado' => false],200);
 
     }
 }
