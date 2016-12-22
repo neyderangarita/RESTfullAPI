@@ -32,6 +32,15 @@ class ColegioController extends Controller
         */        
 
         $result = DB::select('select colegio.nombre as nombre_colegio, comentario.calificacion, colegio.latitud, colegio.longitud,comentario.mensaje, users.nombre as nombre_usuario from comentario inner join colegio on colegio.id = comentario.colegio_id  inner join users on users.id = comentario.user_id  where colegio.codigo= ?', [$id]);
+        
+        //echo (int) $result[0]->calificacion;
+
+        //echo count($result);
+
+        for ($i=0; $i < count($result); $i++) {    
+            $result[$i]->calificacion =  (int) $result[$i]->calificacion;     
+        }
+
         /*
         if(!$result)
         {
