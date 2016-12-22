@@ -25,15 +25,18 @@ class ColegioController extends Controller
                 ->join('users', 'users.id', '=', 'comentario.user_id')
                 ->select('colegio.nombre as nombre_colegio', 'colegio.latitud', 'colegio.longitud', 'comentario.calificacion', 'comentario.mensaje', 'users.nombre as nombre_usuario')
                 ->where('colegio.codigo','=', $id)
+                ->getQuery()
                 ->get();
-        //->getQuery()
+                
 
+        /*
         if(!$result)
         {
             return response()->json(['mensaje' => 'No se encuentra comentarios', 'codigo' => 404],404);
         }
+        */
 
-         return response()->json(['datos' => $result ],200);
+        return response()->json(['datos' => $result],200);
 
     }
 
