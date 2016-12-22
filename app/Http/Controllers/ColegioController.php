@@ -64,8 +64,4 @@ class ColegioController extends Controller
             
             return response()->json(['mensaje' => 'Registro de comentario exitoso'],201);
     }
-
-
-
-
 }
