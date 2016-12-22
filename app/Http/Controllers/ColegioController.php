@@ -23,7 +23,7 @@ class ColegioController extends Controller
 
         $result = Comentario::join('colegio', 'comentario.colegio_id', '=', 'colegio.id')
                 ->join('users', 'users.id', '=', 'comentario.user_id')
-                ->select('colegio.nombre as nombre_colegio','comentario.calificacion', 'colegio.latitud', 'colegio.longitud', 'comentario.mensaje', 'users.nombre as nombre_usuario')
+                ->select('colegio.nombre as nombre_colegio','comentario.calificacion'.' as calificacion', 'colegio.latitud', 'colegio.longitud', 'comentario.mensaje', 'users.nombre as nombre_usuario')
                 ->where('colegio.codigo','=', $id)
                 ->getQuery()
                 ->get();
