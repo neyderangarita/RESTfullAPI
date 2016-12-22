@@ -57,7 +57,7 @@ return [
 	*/
 
 	//'from' => ['address' => 'cupocolegio2017@gmail.com', 'name' => 'Administrador cupo colegio'],
-	'from' => array('address' => 'cupocolegio2017@gmail.com', 'name' => 'Administrador cupo colegio'),
+	'from' => array('address' => 'quierojugapp.soporte@gmail.com', 'name' => 'Administrador cupo colegio'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -85,7 +85,7 @@ return [
 	|
 	*/
 
-	'username' => 'cupocolegio2017@gmail.com',
+	'username' => 'quierojugapp.soporte@gmail.com',
 	//'username' => env('MAIL_USERNAME'),
 
 	/*
@@ -99,7 +99,7 @@ return [
 	|
 	*/
 
-	'password' => 'Cupocolegio12345',
+	'password' => 'quierojugapp123',
 	//'password' => env('MAIL_PASSWORD'),
 	/*
 	|--------------------------------------------------------------------------
