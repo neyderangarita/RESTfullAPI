@@ -68,6 +68,9 @@ class ColegioController extends Controller
 
     public function validar($id_usuario, $codigo)
     {      
+
+
+
         $result = Comentario::join('colegio', 'comentario.colegio_id', '=', 'colegio.id')
                 ->join('users', 'users.id', '=', 'comentario.user_id')
                 ->select('colegio.nombre as nombre_colegio', 'colegio.latitud', 'colegio.longitud', 'comentario.calificacion', 'comentario.mensaje', 'users.nombre as nombre_usuario')
@@ -75,6 +78,14 @@ class ColegioController extends Controller
                 ->where('users.id','=', $id_usuario)
                 ->get();
 
-        return response()->json(['datos' => $result],200);   
+        echo count($result);
+        
+        if(count($result)==0)
+        {
+            return response()->json(['mensaje' => 'No se encuentran comentarios', 'codigo' => 404],404);
+        }
+
+        return response()->json(['datos' => $result, 'codigo' => 200],200);
+
     }
 }
