@@ -12,6 +12,8 @@ Route::group(array('prefix' => 'api/colegio'), function()
 
 Route::get('user/{email}', 'UserController@usuario');
 
+Route::get('validar/{id_usuario}/{codigo}', 'ColegioController@validar');
+
 Route::post('oauth/access_token', function()
 {
     return Response::json(Authorizer::issueAccessToken());

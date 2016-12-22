@@ -64,4 +64,17 @@ class ColegioController extends Controller
             
             return response()->json(['mensaje' => 'Registro de comentario exitoso'],201);
     }
+
+
+    public function validar($id_usuario, $codigo)
+    {      
+        $result = Comentario::join('colegio', 'comentario.colegio_id', '=', 'colegio.id')
+                ->join('users', 'users.id', '=', 'comentario.user_id')
+                ->select('colegio.nombre as nombre_colegio', 'colegio.latitud', 'colegio.longitud', 'comentario.calificacion', 'comentario.mensaje', 'users.nombre as nombre_usuario')
+                ->where('colegio.codigo','=', $codigo)
+                ->where('users.id','=', $id_usuario)
+                ->get();
+
+        return response()->json(['datos' => $result],200);   
+    }
 }
