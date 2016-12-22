@@ -6,7 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Colegio;
 use App\Comentario;
-
+use DB;
 
 class ColegioController extends Controller
 {
@@ -31,7 +31,7 @@ class ColegioController extends Controller
                 
         */        
 
-        $result = \DB::select('select colegio.nombre as nombre_colegio, CAST(comentario.calificacion AS INT) as calificacion, colegio.latitud, colegio.longitud,comentario.mensaje, users.nombre as nombre_usuario 
+        $result = DB::select('select colegio.nombre as nombre_colegio, CAST(comentario.calificacion AS INT) as calificacion, colegio.latitud, colegio.longitud,comentario.mensaje, users.nombre as nombre_usuario 
                                 from comentario inner join colegio on colegio.id = comentario.colegio_id 
                                 inner join users on users.id = comentario.user_id
                                 where colegio.codigo= ?', [$id]);
