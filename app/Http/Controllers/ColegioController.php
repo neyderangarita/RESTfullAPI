@@ -21,6 +21,7 @@ class ColegioController extends Controller
     public function show($id)
     {
 
+        /*
         $result = Comentario::join('colegio', 'comentario.colegio_id', '=', 'colegio.id')
                 ->join('users', 'users.id', '=', 'comentario.user_id')
                 ->select('colegio.nombre as nombre_colegio','comentario.calificacion'.' as calificacion', 'colegio.latitud', 'colegio.longitud', 'comentario.mensaje', 'users.nombre as nombre_usuario')
@@ -28,7 +29,12 @@ class ColegioController extends Controller
                 ->getQuery()
                 ->get();
                 
+        */        
 
+        $result = \DB::select('select colegio.nombre as nombre_colegio,comentario.calificacion, colegio.latitud, colegio.longitud,comentario.mensaje, users.nombre as nombre_usuario 
+                                from comentario inner join colegio on colegio.id = comentario.colegio_id 
+                                inner join users on users.id = comentario.user_id
+                                where colegio.codigo=' . $id);
         /*
         if(!$result)
         {
